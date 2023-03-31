@@ -312,7 +312,8 @@ fn test_permission_denied() {
         .arg("o=r")
         .arg("d")
         .fails()
-        .stderr_is("chmod: 'd/no-x/y': Permission denied\n");
+        // mustang's `readdir` hits the failure on `open` instead of the `read`.
+        .stderr_is("chmod: Permission denied\n");
 }
 
 #[test]
