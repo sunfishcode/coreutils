@@ -12,7 +12,9 @@ fn test_invalid_arg() {
 
 #[test]
 fn test_normal() {
-    let result = new_ucmd!().run();
+    let result = new_ucmd!()
+        .env("LOGNAME", env::var("LOGNAME").unwrap()) // Eyra's `getlogin` needs `LOGNAME`
+        .run();
     println!("env::var(CI).is_ok() = {}", env::var("CI").is_ok());
 
     for (key, value) in env::vars() {

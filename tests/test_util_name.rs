@@ -3,6 +3,9 @@
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code.
 #![allow(unused_imports)]
+
+extern crate eyra;
+
 mod common;
 
 use common::util::TestScenario;

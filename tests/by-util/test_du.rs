@@ -587,7 +587,8 @@ fn test_du_no_exec_permission() {
     ts.ccmd("chmod").arg("u=rw").arg("d/no-x").succeeds();
 
     let result = ts.ucmd().arg("d/no-x").fails();
-    result.stderr_contains("du: cannot access 'd/no-x/y': Permission denied");
+    // Eyra's `readdir` hits the failure on `open` instead of the `read`.
+    result.stderr_contains("du: cannot read directory 'd/no-x': Permission denied");
 }
 
 #[cfg(target_vendor = "apple")]

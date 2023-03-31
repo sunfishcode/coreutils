@@ -11,6 +11,8 @@ use std::io::Write;
 use std::path::Path;
 
 pub fn main() {
+    println!("cargo:rustc-link-arg=-nostartfiles"); // For Eyra.
+
     if let Ok(profile) = env::var("PROFILE") {
         println!("cargo:rustc-cfg=build={profile:?}");
     }
